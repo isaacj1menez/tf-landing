@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { addCamper } from '../../../services/tf-camp-api.service';
+import { addCamper, sendSms } from '../../../services/tf-camp-api.service';
 import { registerSuccess } from '../../../utils/alerts';
 import { CommonModule } from '@angular/common';
 
@@ -43,10 +43,10 @@ export class RegisterOffcanvasComponent {
   onSubmit = async () => {
     const body = { ...this.registerForm.value, alergias: this.alergias, medicamentos: this.medicamentos };
     this.cargando = true;
-    const succes: boolean = await addCamper(body);
+    const camper = await addCamper(body);
 
-    if(succes) {
-
+    if(camper) {
+      await sendSms(`+52${body.telefono!}`, camper.data.registro);
       this.error = false;
       this.error_message = '';
       this.resetForm();
@@ -54,6 +54,7 @@ export class RegisterOffcanvasComponent {
       registerSuccess();
 
     } else {
+      this.cargando = false;
       this.error = true;
       this.error_message = 'Algo salió mal, verifica tus datos. Si el problema persiste, contacta al pastor Edgar Serés'
     }
