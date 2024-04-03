@@ -22,6 +22,7 @@ export class RegisterOffcanvasComponent {
   medicamentos: string[] = [];
   error: boolean = false;
   error_message: string = '';
+  cargando: boolean = false;
 
   registerForm = new FormGroup({
     nombre: new FormControl(''),
@@ -41,6 +42,7 @@ export class RegisterOffcanvasComponent {
 
   onSubmit = async () => {
     const body = { ...this.registerForm.value, alergias: this.alergias, medicamentos: this.medicamentos };
+    this.cargando = true;
     const succes: boolean = await addCamper(body);
 
     if(succes) {
@@ -48,6 +50,7 @@ export class RegisterOffcanvasComponent {
       this.error = false;
       this.error_message = '';
       this.resetForm();
+      this.cargando = false;
       registerSuccess();
 
     } else {

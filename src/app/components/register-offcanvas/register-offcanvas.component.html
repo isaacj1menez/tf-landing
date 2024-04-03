@@ -98,7 +98,11 @@
             <div class="alert alert-warning" role="alert" *ngIf="error">
                 {{error_message}}
             </div>
-            <button type="submit" class="btn btn-dark" [disabled]="!registerForm.valid">Completar Registro</button>
+            <button *ngIf="!cargando" type="submit" class="btn btn-dark" [disabled]="!registerForm.valid">Completar Registro</button>
+            <div *ngIf="cargando" class="d-flex align-items-center">
+                <strong role="status">Registrando...</strong>
+                <div class="spinner-border ms-auto" aria-hidden="true"></div>
+            </div>
         </form>
     </div>
 </div>
