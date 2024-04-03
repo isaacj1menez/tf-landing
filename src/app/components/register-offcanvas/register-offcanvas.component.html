@@ -1,0 +1,104 @@
+<div class="offcanvas offcanvas-end" id="offcanvas">
+    <div class="offcanvas-header">
+        <h3>Registro</h3>
+        <button type="button" id="btnClose" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">text_format</span>
+                <input type="text" class="form-control" placeholder="Nombre completo" formControlName="nombre" required>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">123</span>
+                <input type="number" class="form-control" placeholder="Edad" formControlName="edad" required>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">wc</span>
+                <select class="form-select" formControlName="sexo" required>
+                    <option>Sexo...</option>
+                    <option value="F">Femenino</option>
+                    <option value="M">Masculino</option>
+                </select>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">call</span>
+                <input type="number" class="form-control" placeholder="Teléfono" formControlName="telefono" required>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">church</span>
+                <input type="text" class="form-control" placeholder="Iglesia a la que asistes"
+                    formControlName="iglesia">
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">bloodtype</span>
+                <select class="form-select" formControlName="tipo_sangre" required>
+                    <option>Tipo de Sangre...</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">contact_emergency</span>
+                <select class="form-select" formControlName="contacto" required>
+                    <option>Contacto...</option>
+                    <option value="P">Papá</option>
+                    <option value="M">Mamá</option>
+                    <option value="CG">Contacto General</option>
+                </select>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">text_format</span>
+                <input type="text" class="form-control" placeholder="Nombre del contacto"
+                    formControlName="nombre_contacto" required>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">call</span>
+                <input type="number" class="form-control" placeholder="Teléfono de contacto"
+                    formControlName="telefono_contacto" required>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">apparel</span>
+                <select class="form-select" formControlName="talla" required>
+                    <option>Talla de playera...</option>
+                    <option value="CH">CH</option>
+                    <option value="M">M</option>
+                    <option value="G">G</option>
+                </select>
+            </div>
+            <hr>
+            <div class="mb-2">
+                <span *ngFor="let alergia of alergias" class="alergy badge rounded-pill text-bg-secondary">{{ alergia
+                    }}</span>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <input type="text" class="form-control" placeholder="Alergias" formControlName="alergias">
+                <button (click)="addAlergia()" class="btn btn-outline-secondary" type="button">Agregar</button>
+            </div>
+            <div class="mb-2">
+                <span *ngFor="let medicamento of medicamentos" class="alergy badge rounded-pill text-bg-secondary">{{
+                    medicamento
+                    }}</span>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <input type="text" class="form-control" placeholder="Medicamentos" formControlName="medicamentos">
+                <button (click)="addMedicamento()" class="btn btn-outline-secondary" type="button">Agregar</button>
+            </div>
+            <div class="mb-3 input-group flex-nowrap">
+                <span class="input-group-text material-symbols-outlined">short_text</span>
+                <textarea type="text" class="form-control" placeholder="Comentarios adicionales"
+                    formControlName="comentarios"></textarea>
+            </div>
+            <div class="alert alert-warning" role="alert" *ngIf="error">
+                {{error_message}}
+            </div>
+            <button type="submit" class="btn btn-dark" [disabled]="!registerForm.valid">Completar Registro</button>
+        </form>
+    </div>
+</div>

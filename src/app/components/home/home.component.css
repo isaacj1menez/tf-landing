@@ -1,0 +1,43 @@
+.profile {
+    position: relative;
+    height: 75vw;
+    width: 75vw;
+    border-radius: 5vw;
+    margin-top: 5vw;
+    max-height: 40rem;
+    max-width: 40rem;
+}
+
+.profile .profile-img {
+    height: 80vw;
+    max-height: 45rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.fw-bolder {
+    font-weight: bolder !important;
+}
+
+.mb-5 {
+    margin-bottom: 3rem !important;
+}
+
+span.alergy {
+    margin-right: 2.5px;
+}
+
+.accent{
+    color: #DBD14E;
+}
+
+.body {
+    background-color: #2A5380;
+    height: 100%;
+}
